@@ -32,21 +32,10 @@ class PersonController {
       if (error) return response(res, 400, error.details[0].message);
 
       //get the person with that Id from the database
-      await Person.findById(value.id)
-        .exec()
-        .then((person) => {
-          const filteredPerson = _.pick(person, ["name", "id"]);
-          return response(
-            res,
-            200,
-            "Person retrived successfully",
-            filteredPerson
-          );
-        })
-        .catch((error) => {
-          console.log(`An error occured ${error}`);
-          return response(res, 404, "Person not found");
-        });
+      const person = await Person.findById(value.id);
+      if (!person) return response(res, 404, "Person not found");
+      const filteredPerson = _.pick(person, ["name", "id"]);
+      return response(res, 200, "Person retrived successfully", filteredPerson);
     } catch (error) {
       console.log(`An error occured ${error}`);
       return response(res, 500, "An error occured while fetching person");

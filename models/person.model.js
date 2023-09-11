@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
-const PersonSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const PersonSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
   },
-  versionKey: false
-});
+  { versionKey: false }
+);
 
 PersonSchema.virtual("id").get(function () {
   return this._id.toHexString();
