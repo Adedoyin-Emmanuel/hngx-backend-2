@@ -1,37 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const {PersonController} = require("./../controllers");
+const { PersonController } = require("./../controllers");
 
 router.get("/", (req, res) => {
-  resposne(res, 200, {
-    data: {
-      message: "Welcome to persons API",
-    },
-  });
+  PersonController.getAll(req, res);
+});
+
+router.get("/:id", (req, res) => {
+  PersonController.getById(req, res);
 });
 
 router.post("/", (req, res) => {
-  resposne(res, 200, {
-    data: {
-      message: "Welcome to persons API",
-    },
-  });
+  PersonController.create(req, res);
 });
 
 router.put("/", (req, res) => {
-  resposne(res, 200, {
-    data: {
-      message: "Welcome to persons API",
-    },
-  });
+  PersonController.update(req, res);
 });
 
 router.delete("/", (req, res) => {
-  resposne(res, 200, {
-    data: {
-      message: "Welcome to persons API",
-    },
-  });
+  PersonController.delete(req, res);
 });
 
 module.exports = router;
