@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const response = require("./../utils/response");
+const {PersonController} = require("./../controllers");
 
 router.get("/", (req, res) => {
   resposne(res, 200, {
