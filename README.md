@@ -1,5 +1,7 @@
 # HNGX Backend Task 2 🚀
 
+[_See API Documentation_](./DOCUMENTATION.md)
+
 ## Objective 🎯
 
 Objective: Build a simple **REST API** capable of **CRUD** operations on a resource, say, a "person". The chosen programming language should interface with any chosen database of your choice.
@@ -49,9 +51,9 @@ I'm to build a simple **REST API** capable of **CRUD** operations on a "**person
 
 ## Acceptance Criteria ✍️
 
-   Functional REST API: The API should successfully perform all CRUD operations.
-   Modeling Diagrams: Clear and accurate UML and E-R diagrams should be provided.
-   Effective Testing Script: The script should successfully test all the CRUD operations without manual intervention.
-   Dynamic Parameter Handling: The API should correctly handle and respond to different parameters provided.
-   GitHub Repository: Repository should be well-organized, contain all necessary files, and be publicly accessible.
-   Detailed Documentation: Documentation should provide clear guidance on how to use the API, including setup, request/response formats, and sample usage.
+Functional REST API: The API should successfully perform all CRUD operations.
+Modeling Diagrams: Clear and accurate UML and E-R diagrams should be provided.
+Effective Testing Script: The script should successfully test all the CRUD operations without manual intervention.
+Dynamic Parameter Handling: The API should correctly handle and respond to different parameters provided.
+GitHub Repository: Repository should be well-organized, contain all necessary files, and be publicly accessible.
+Detailed Documentation: Documentation should provide clear guidance on how to use the API, including setup, request/response formats, and sample usage.
