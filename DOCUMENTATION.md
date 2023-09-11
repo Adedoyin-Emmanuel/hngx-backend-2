@@ -76,6 +76,17 @@ This endpoint expects a `name` key value pair in the request body eg
 }
 ```
 
+**Server Error Response**
+
+```json
+{
+  "code": 500,
+  "status": "Internal Server Error",
+  "message": "An error occured while creating person",
+  "data": {}
+}
+```
+
 ### 2. Get a Person
 
 This endpoint expects an id
@@ -95,6 +106,28 @@ This endpoint expects an id
     "name": "Adedoyin Emmanuel",
     "id": "64ff558da892b91a60f4d8e1"
   }
+}
+```
+
+**Person Not Found Error Response**
+
+```json
+{
+  "code": 404,
+  "status": "Not Found",
+  "message": "Person not found",
+  "data": {}
+}
+```
+
+**Server Error Response**
+
+```json
+{
+  "code": 500,
+  "status": "Internal Server Error",
+  "message": "An error occured while fetching person",
+  "data": {}
 }
 ```
 
@@ -126,6 +159,28 @@ This endpoint expects an id and a `name` key value pair in the request body eg
 }
 ```
 
+**Person Not Found Error Response**
+
+```json
+{
+  "code": 404,
+  "status": "Not Found",
+  "message": "Person not found",
+  "data": {}
+}
+```
+
+**Server Error Response**
+
+```json
+{
+  "code": 500,
+  "status": "Internal Server Error",
+  "message": "An error occured while updating person",
+  "data": {}
+}
+```
+
 ### 4. Delete a Person
 
 This endpoint expects an id
@@ -141,6 +196,28 @@ This endpoint expects an id
   "code": 200,
   "status": "OK",
   "message": "Person deleted successfully",
+  "data": {}
+}
+```
+
+**Person Not Found Error Response**
+
+```json
+{
+  "code": 404,
+  "status": "Not Found",
+  "message": "Person not found",
+  "data": {}
+}
+```
+
+**Server Error Response**
+
+```json
+{
+  "code": 500,
+  "status": "Internal Server Error",
+  "message": "An error occured while deleting person",
   "data": {}
 }
 ```
