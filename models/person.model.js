@@ -7,6 +7,14 @@ const PersonSchema = new mongoose.Schema({
   },
 });
 
+PersonSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+PersonSchema.set("toJSON", {
+  virtuals: true,
+});
+
 const Person = mongoose.model("Person", PersonSchema);
 
 module.exports = Person;

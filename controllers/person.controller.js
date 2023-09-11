@@ -12,11 +12,11 @@ class PersonController {
       const { error, value } = requestSchema.validate(req.body);
       if (error) return response(res, 400, error.details[0].message);
 
-      await Person.create(value);
-      return response(res, 201, "Person created successfully");
+      const person = await Person.create(value);
+      return response(res, 201, "Person created successfully", person);
     } catch (error) {
       console.log(`An error occured ${error}`);
-      return response(res, 500, "Could not create person");
+      return response(res, 500, "An error occured while creating person");
     }
   }
 
@@ -26,14 +26,14 @@ class PersonController {
         id: Joi.string().required(),
       });
 
-      const { error, value } = requestSchema.validate(req.body);
+      const { error, value } = requestSchema.validate(req.params);
       if (error) return response(res, 400, error.details[0].message);
 
       //get the person with that Id from the database
       await Person.findById(value.id)
         .exec()
         .then((person) => {
-          return response(res, 200, person);
+          return response(res, 200, "Person retrived successfully", person);
         })
         .catch((error) => {
           console.log(`An error occured ${error}`);
@@ -41,36 +41,39 @@ class PersonController {
         });
     } catch (error) {
       console.log(`An error occured ${error}`);
-      return response(res, 500, "Could not get person");
-    }
-  }
-
-  static async getAll(req, res) {
-    try {
-      //get all persons from the database
-      const allPersons = await Person.find();
-      return response(res, 200, allPersons);
-    } catch (error) {
-      console.log(`An error occured ${error}`);
-      return response(res, 500, "Could not retrive persons from db");
+      return response(res, 500, "An error occured while fetching person");
     }
   }
 
   static async update(req, res) {
     try {
       const requestSchema = Joi.object({
-        id: Joi.string().required(),
         name: Joi.string().required(),
       });
+
+      const requestParamsSchema = Joi.object({
+        id: Joi.string().required(),
+      });
+
+      const { error: paramsReqError, value: paramsReqValue } =
+        requestParamsSchema.validate(req.params);
+      if (paramsReqError)
+        return response(res, 400, paramsReqError.details[0].message);
 
       const { error, value } = requestSchema.validate(req.body);
       if (error) return response(res, 400, error.details[0].message);
 
-      //update the person value in the database
-      // await Person.findByIdAndUpdate(value.id)
+      const updatedPerson = await Person.findOneAndUpdate(
+        { _id: paramsReqValue.id },
+        { name: value.name },
+        { new: true }
+      );
+
+      if (!updatedPerson) return response(res, 404, "Person not found");
+      return response(res, 200, "Person updated successfully", updatedPerson);
     } catch (error) {
       console.log(`An error occured ${error}`);
-      return response(res, 500, "Could not retrive persons from db");
+      return response(res, 500, "An error occured while updating person");
     }
   }
 
@@ -80,15 +83,15 @@ class PersonController {
         id: Joi.string().required(),
       });
 
-      const { error, value } = requestSchema.validate(req.body);
+      const { error, value } = requestSchema.validate(req.params);
       if (error) return response(res, 400, error.details[0].message);
 
-      //delete the person value in the database
-      await Person.findByIdAndDelete(value.id).exec();
+      const deletedPerson = await Person.findByIdAndDelete(value.id).exec();
+      if (!deletedPerson) return response(res, 404, "Person not found");
       return response(res, 200, "Person deleted successfully");
     } catch (error) {
       console.log(`An error occured ${error}`);
-      return response(res, 500, "Could not delete person");
+      return response(res, 500, "An error occured while deleting person");
     }
   }
 }
