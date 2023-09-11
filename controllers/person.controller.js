@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const response = require("./../utils/response");
 const { Person } = require("./../models");
+const _ = require("lodash");
 
 class PersonController {
   static async create(req, res) {
@@ -13,7 +14,8 @@ class PersonController {
       if (error) return response(res, 400, error.details[0].message);
 
       const person = await Person.create(value);
-      return response(res, 201, "Person created successfully", person);
+      const filteredPerson = _.pick(person, ["name", "id"]);
+      return response(res, 201, "Person created successfully", filteredPerson);
     } catch (error) {
       console.log(`An error occured ${error}`);
       return response(res, 500, "An error occured while creating person");
@@ -33,7 +35,13 @@ class PersonController {
       await Person.findById(value.id)
         .exec()
         .then((person) => {
-          return response(res, 200, "Person retrived successfully", person);
+          const filteredPerson = _.pick(person, ["name", "id"]);
+          return response(
+            res,
+            200,
+            "Person retrived successfully",
+            filteredPerson
+          );
         })
         .catch((error) => {
           console.log(`An error occured ${error}`);
@@ -70,7 +78,8 @@ class PersonController {
       );
 
       if (!updatedPerson) return response(res, 404, "Person not found");
-      return response(res, 200, "Person updated successfully", updatedPerson);
+      const filteredPerson = _.pick(updatedPerson, ["name", "id"]);
+      return response(res, 200, "Person updated successfully", filteredPerson);
     } catch (error) {
       console.log(`An error occured ${error}`);
       return response(res, 500, "An error occured while updating person");

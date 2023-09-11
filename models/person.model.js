@@ -5,6 +5,7 @@ const PersonSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  versionKey: false
 });
 
 PersonSchema.virtual("id").get(function () {
