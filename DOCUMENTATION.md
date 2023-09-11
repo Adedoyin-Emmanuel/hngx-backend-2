@@ -21,13 +21,13 @@ To get started, you need to follow the steps below
 1. Clone the respository
 
 ```bash
-    git clone https://github.com/adedoyin-emmanuel/hng-backend-2.git/
+    git clone https://github.com/adedoyin-emmanuel/hngx-backend-2.git/
 ```
 
 2. Cd into clone repository
 
 ```bash
-    cd hng-backend-2g
+    cd hngx-backend-2
 ```
 
 3. Install project dependencies
@@ -36,7 +36,7 @@ To get started, you need to follow the steps below
    npm install
 ```
 
-4.Create .env file
+4. Create .env file
 
 ```bash
    mv .env.example .env
@@ -92,7 +92,7 @@ This endpoint expects an id
   "status": "OK",
   "message": "Person retrived successfully",
   "data": {
-    "name": "Adedoyin Emmy",
+    "name": "Adedoyin Emmanuel",
     "id": "64ff558da892b91a60f4d8e1"
   }
 }
@@ -104,7 +104,7 @@ This endpoint expects an id and a `name` key value pair in the request body eg
 
 ```json
 {
-  "name": "Adedoyin Emmanuel"
+  "name": "Adedoyin Emmanuel Adeniyi"
 }
 ```
 
@@ -120,7 +120,7 @@ This endpoint expects an id and a `name` key value pair in the request body eg
   "status": "OK",
   "message": "Person updated successfully",
   "data": {
-    "name": "Adedoyin Emmanuel",
+    "name": "Adedoyin Emmanuel Adeniyi",
     "id": "64ff558da892b91a60f4d8e1"
   }
 }
