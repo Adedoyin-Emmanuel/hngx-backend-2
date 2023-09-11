@@ -36,11 +36,13 @@ To get started, you need to follow the steps below
    npm install
 ```
 
-4. Start the server
+4.Create .env file
 
 ```bash
-   npm start
+   mv .env.example .env
 ```
+
+5. Update .env file with mongodb url
 
 This would start the server and you can now access the **API** from _localhost:2800/api_ ⚠️ you need to have mongoDb compass installed as well as mongodb cluster
 
